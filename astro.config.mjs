@@ -1,8 +1,8 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import { unified } from '@astrojs/markdown-remark';
+import { defineConfig } from 'astro/config';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 
 // https://astro.build/config
@@ -11,8 +11,8 @@ export default defineConfig({
   // For a GitHub Pages project site, `site` is the user/org domain and `base`
   // is the repository name. Drop `base` (or set it to '/') for a custom domain
   // or a `<user>.github.io` root site.
-  site: 'https://kpab.github.io',
-  base: '/astro-keel',
+  site: 'https://patrickhcahill.github.io',
+  base: '/rsc2027_website',
   integrations: [mdx(), sitemap()],
   markdown: {
     processor: unified({

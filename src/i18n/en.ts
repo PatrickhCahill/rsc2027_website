@@ -37,6 +37,8 @@ export const en = {
 
   // Home — labels and links only; the page's own copy lives in index.astro
   'home.primaryLinks': 'Primary links',
+  'home.register': 'Register',
+  'home.sponsor': 'Sponsor us',
   'home.viewWorks': 'View works',
   'home.readNotes': 'Read notes',
   'home.overviewLabel': 'Theme overview',
@@ -101,6 +103,10 @@ export const en = {
   'work.stackEyebrow': 'Stack',
 
   // About — section labels only; the biography copy lives in about/index.astro
+  'registration.title': 'Registration',
+  'registration.eyebrow': 'Registration',
+  'sponsorship.title': 'Sponsorship',
+  'sponsorship.eyebrow': 'Sponsorship',
   'about.title': 'About',
   'about.eyebrow': 'About',
   'about.ledgerLabel': 'Experience summary',

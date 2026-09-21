@@ -248,6 +248,20 @@ a:not(.brand, .button):hover {
   animation-delay: 270ms;
 }
 
+/* Event title: a two-tier h1 — the kicker sits as a smaller first line. */
+.hero-kicker {
+  display: block;
+  margin-bottom: calc(var(--baseline) * 0.5);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-muted);
+}
+
+.hero .lead p + p {
+  margin-top: var(--baseline);
+}
+
 .section {
   padding-block: clamp(3.5rem, 5.5vw, 5.5rem);
 }
