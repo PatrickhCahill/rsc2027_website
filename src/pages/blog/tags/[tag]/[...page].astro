@@ -52,29 +52,29 @@ const pageTitle =
       <p class="eyebrow">{t('tag.moreTagsEyebrow')}</p>
       <nav class="tag-cloud" aria-label={t('tag.otherTagsNavLabel')}>
         <a href={withBase('/blog/')}>{t('tag.allPosts')}</a>
-        {otherTags.map((item) => <a href={withBase(`/blog/tags/${item}/`)}>{item}</a>)}
+        {otherTags.map((item) => (
+          <a href={withBase(`/blog/tags/${item}/`)}>{item}</a>
+        ))}
       </nav>
     </div>
 
     <div>
       <div class="entry-list">
-        {
-          taggedPosts.map((post) => (
-            <article class="entry-card">
-              <div class="entry-meta">
-                <time datetime={post.data.publishDate.toISOString()}>
-                  {formatDate(post.data.publishDate, 'short')}
-                </time>
-                <span>{readingTimes.get(post.id)}</span>
-                <span>{post.data.tags.join(' / ')}</span>
-              </div>
-              <h2>
-                <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
-              </h2>
-              <p>{post.data.description}</p>
-            </article>
-          ))
-        }
+        {taggedPosts.map((post) => (
+          <article class="entry-card">
+            <div class="entry-meta">
+              <time datetime={post.data.publishDate.toISOString()}>
+                {formatDate(post.data.publishDate, 'short')}
+              </time>
+              <span>{readingTimes.get(post.id)}</span>
+              <span>{post.data.tags.join(' / ')}</span>
+            </div>
+            <h2>
+              <a href={withBase(`/blog/${post.id}/`)}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+          </article>
+        ))}
       </div>
       <Pagination page={page} />
     </div>

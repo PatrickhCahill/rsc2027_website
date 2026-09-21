@@ -28,17 +28,15 @@ const works = (await getCollection('works')).sort((a, b) => {
 
   <section class="section" aria-label={t('works.listLabel')}>
     <div class="work-list">
-      {
-        works.map((work) => (
-          <article class="work-card">
-            <p class="entry-meta">{work.data.tech.join(' / ')}</p>
-            <h2>
-              <a href={withBase(`/works/${work.id}/`)}>{work.data.title}</a>
-            </h2>
-            <p>{work.data.description}</p>
-          </article>
-        ))
-      }
+      {works.map((work) => (
+        <article class="work-card">
+          <p class="entry-meta">{work.data.tech.join(' / ')}</p>
+          <h2>
+            <a href={withBase(`/works/${work.id}/`)}>{work.data.title}</a>
+          </h2>
+          <p>{work.data.description}</p>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>

@@ -17,26 +17,24 @@ const prev = withSlash(page.url.prev);
 const next = withSlash(page.url.next);
 ---
 
-{
-  page.lastPage > 1 && (
-    <nav class="pagination" aria-label={t('pagination.label')}>
-      {prev ? (
-        <a href={prev} rel="prev">
-          {t('pagination.newer')}
-        </a>
-      ) : (
-        <span aria-hidden="true" />
-      )}
-      <span class="pagination-status">
-        {t('pagination.status', { current: page.currentPage, total: page.lastPage })}
-      </span>
-      {next ? (
-        <a href={next} rel="next">
-          {t('pagination.older')}
-        </a>
-      ) : (
-        <span aria-hidden="true" />
-      )}
-    </nav>
-  )
-}
+{page.lastPage > 1 && (
+  <nav class="pagination" aria-label={t('pagination.label')}>
+    {prev ? (
+      <a href={prev} rel="prev">
+        {t('pagination.newer')}
+      </a>
+    ) : (
+      <span aria-hidden="true" />
+    )}
+    <span class="pagination-status">
+      {t('pagination.status', { current: page.currentPage, total: page.lastPage })}
+    </span>
+    {next ? (
+      <a href={next} rel="next">
+        {t('pagination.older')}
+      </a>
+    ) : (
+      <span aria-hidden="true" />
+    )}
+  </nav>
+)}
