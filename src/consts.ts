@@ -12,16 +12,18 @@ export const SITE = {
   /** Site name — used in the header brand, <title>, and og:site_name. */
   title: 'RSC 2027',
   /** Default meta description for pages that don't set their own. */
-  description: "31 August 2027 to 4 September 2027 Research Students' Conference in Probability and Statistics",
+  description:
+    "31 August 2027 to 4 September 2027 Research Students' Conference in Probability and Statistics",
   /** Description of the RSS feed at /rss.xml. */
   rssDescription: '31 August 2027 to 4 September 2027 Conference.',
   /** Default social share image, relative to the site root (see public/). */
-  ogImage: '/logo.jpg',
+  ogImage: '/og.jpg',
   /** Post author, emitted in JSON-LD BlogPosting structured data.
    *  Leave empty ('') to omit the author field. */
   author: 'Patrick Cahill',
   /** Footer credit line. */
-  footerText: 'The official email contact is rsc2027imperial@gmail.com. Please disregard communication about the conference from any other source.',
+  footerText:
+    'The official email contact is rsc2027imperial@gmail.com. Please disregard communication about the conference from any other source.',
 } as const;
 
 /** Icons bundled with the theme — see `src/components/SocialLinks.astro`. */
