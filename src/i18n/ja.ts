@@ -26,6 +26,8 @@ export const ja: UIStrings = {
 
   // Home
   'home.primaryLinks': '主要リンク',
+  'home.register': '参加登録',
+  'home.sponsor': '協賛のご案内',
   'home.viewWorks': '制作物を見る',
   'home.readNotes': 'ノートを読む',
   'home.overviewLabel': 'テーマの概要',
@@ -87,6 +89,10 @@ export const ja: UIStrings = {
   'work.stackEyebrow': '技術構成',
 
   // About
+  'registration.title': '参加登録',
+  'registration.eyebrow': '参加登録',
+  'sponsorship.title': '協賛',
+  'sponsorship.eyebrow': '協賛',
   'about.title': 'プロフィール',
   'about.eyebrow': 'プロフィール',
   'about.ledgerLabel': '経歴の概要',
