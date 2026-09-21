@@ -1,19 +1,28 @@
 ---
 // Registration page. The prose here is placeholder copy — rewrite it for the
 // event. Like the about page, it is intentionally *not* in `src/i18n/`: the
-// dictionary holds UI chrome (title, eyebrow), the copy lives here.
-//
-// TODO (Phase 1): embed the Google Form via the `Embed` component once
-// `EMBEDS.registrationForm` exists in `src/consts.ts`.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SITE } from '../../consts';
+// dictionary holds UI chrome (title, eyebrow), the copy lives here. The form
+// URL and height live in `EMBEDS` in `src/consts.ts`.
+import Embed from '../../components/Embed.astro';
+import { EMBEDS, SITE } from '../../consts';
 import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/url';
 ---
 
 <BaseLayout title={t('registration.title')} description={`Register for ${SITE.title}.`}>
   <section class="page-head section">
     <p class="eyebrow">{t('registration.eyebrow')}</p>
     <h1>Register to attend.</h1>
-    <p class="lead">Registration details, deadlines, and the registration form will appear here.</p>
+    <p class="lead">
+      Registration is for attendance to the conference. To submit an abstract for a talk and/or
+      poster, please see make a separate <a
+        href={withBase('./submission')}
+        style="text-decoration: underline;">submission</a
+      >.
+    </p>
+  </section>
+  <section class="section">
+    <Embed {...EMBEDS.registrationForm} />
   </section>
 </BaseLayout>

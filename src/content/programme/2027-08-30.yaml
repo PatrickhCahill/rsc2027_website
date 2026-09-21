@@ -1,0 +1,10 @@
+# Day 0. Placeholder sessions — edit freely. Sessions sharing a start and
+# end time are shown side by side; use `track` to label them.
+# type: keynote | talk | poster | break | social (default: talk)
+date: 2027-08-30
+sessions:
+  - start: '18:00'
+    end: '20:30'
+    title: Bank Holiday Arrival Drinks (Optional.)
+    room: The Eastside Bar
+    type: social

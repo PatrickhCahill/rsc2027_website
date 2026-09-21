@@ -1,0 +1,36 @@
+# Day 4. Placeholder sessions — edit freely.
+date: 2027-09-03
+sessions:
+  - start: '09:00'
+    end: '10:30'
+    title: Contributed talks — Stochastic processes
+    room: Lecture Theatre 1
+    track: A
+
+  - start: '09:00'
+    end: '10:30'
+    title: Contributed talks — Computational statistics
+    room: Lecture Theatre 2
+    track: B
+
+  - start: '10:30'
+    end: '11:00'
+    title: Coffee
+    type: break
+
+  - start: '11:00'
+    end: '12:00'
+    title: Closing keynote
+    speaker: Speaker to be announced
+    room: Lecture Theatre 1
+    type: keynote
+
+  - start: '12:00'
+    end: '12:30'
+    title: Prizes and closing remarks
+    room: Lecture Theatre 1
+
+  - start: '12:30'
+    end: '13:30'
+    title: Lunch
+    type: break

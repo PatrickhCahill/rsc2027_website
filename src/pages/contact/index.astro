@@ -1,0 +1,21 @@
+---
+// Contact page. The prose here is placeholder copy — rewrite it for the
+// event. Like the about page, it is intentionally *not* in `src/i18n/`: the
+// dictionary holds UI chrome (title, eyebrow), the copy lives here.
+import { SITE } from '../../consts';
+import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const email = SITE.email;
+---
+
+<BaseLayout title={t('contact.title')} description={`How to contact the ${SITE.title} organisers.`}>
+  <section class="page-head section">
+    <p class="eyebrow">{t('contact.eyebrow')}</p>
+    <h1>Get in touch.</h1>
+    <p class="lead">
+      The official email contact for the conference is <a href={`mailto:${email}`}>{email}</a>. Please disregard communication about the conference
+      from any other source.
+    </p>
+  </section>
+</BaseLayout>

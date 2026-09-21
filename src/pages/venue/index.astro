@@ -1,0 +1,88 @@
+---
+// Venue page. The prose here is placeholder copy — rewrite it for the
+// event. Like the about page, it is intentionally *not* in `src/i18n/`: the
+// dictionary holds UI chrome (title, eyebrow), the copy lives here.
+//
+// The map is Leaflet over OpenStreetMap tiles — the one page on the site
+// that ships client JavaScript. Coordinates and address come from `VENUE`
+// in `src/consts.ts`; the script below reads them from data attributes so
+// the config stays in one place.
+import { SITE, VENUE } from '../../consts';
+import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import 'leaflet/dist/leaflet.css';
+---
+
+<BaseLayout title={t('venue.title')} description={`Venue for ${SITE.title}.`}>
+  <section class="page-head section">
+    <p class="eyebrow">{t('venue.eyebrow')}</p>
+    <h1>{VENUE.name}.</h1>
+    <p class="lead">{VENUE.address}</p>
+  </section>
+
+  <section class="section">
+    <div
+      id="venue-map"
+      class="venue-map"
+      role="region"
+      aria-label={`Map showing ${VENUE.name}`}
+      data-lat={VENUE.lat}
+      data-lng={VENUE.lng}
+      data-zoom={VENUE.zoom}
+      data-name={VENUE.name}
+      data-address={VENUE.address}
+    >
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import L from 'leaflet';
+  // Leaflet resolves its default marker images relative to its CSS, which
+  // the bundler rewrites — so hand it the bundled URLs explicitly.
+  import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+  import markerIcon from 'leaflet/dist/images/marker-icon.png';
+  import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+  L.Icon.Default.mergeOptions({
+    iconUrl: markerIcon.src,
+    iconRetinaUrl: markerIcon2x.src,
+    shadowUrl: markerShadow.src,
+  });
+
+  const initMap = () => {
+    const el = document.getElementById('venue-map');
+    // Runs on every page load under the view-transition router; skip if the
+    // element is missing (other pages) or already initialised.
+    if (!(el instanceof HTMLElement) || el.dataset.ready) return;
+    el.dataset.ready = 'true';
+
+    const { lat, lng, zoom, name, address } = el.dataset;
+    const centre: [number, number] = [Number(lat), Number(lng)];
+    const tube: [number, number] = [Number(51.4935), Number(-0.1835)];
+
+    const map = L.map(el).setView(centre, Number(zoom));
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Both popups stay open together: Leaflet would otherwise close one when
+    // the other opens, or on any click on the map.
+    const popupOptions = { autoClose: false };
+
+    L.marker(centre)
+      .addTo(map)
+      .bindPopup(`<strong>${name}</strong><br>${address}`, popupOptions)
+      .openPopup();
+
+    L.marker(tube)
+      .addTo(map)
+      .bindPopup(`<strong>Gloucester Road Station</strong><br>Closest Tube`, popupOptions)
+      .openPopup();
+  };
+
+  initMap();
+  document.addEventListener('astro:page-load', initMap);
+</script>

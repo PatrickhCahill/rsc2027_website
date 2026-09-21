@@ -1,0 +1,39 @@
+---
+// A framed third-party <iframe> (form, calendar, map). Config comes from
+// `EMBEDS` in `src/consts.ts`. The frame is always light: embedded widgets
+// ignore the site theme, so a white card on the dark scheme reads as
+// deliberate rather than broken. A plain link follows the frame for readers
+// whose browser blocks the iframe, and as a larger target on phones.
+import type { EmbedConfig } from '../consts';
+
+interface Props extends EmbedConfig {
+  /** Label for the link below the frame. */
+  linkLabel?: string;
+  /** Shown in place of the frame while `src` is empty. */
+  emptyText?: string;
+}
+
+const {
+  src,
+  title,
+  height,
+  linkLabel = `Open the ${title.toLowerCase()} in a new tab`,
+  emptyText = `The ${title.toLowerCase()} is not open yet.`,
+} = Astro.props;
+
+// `embed=true` is for the iframe only; the direct link opens the full page.
+const directUrl = src.replace(/([?&])embed=true(&|$)/, (_m, sep, tail) => (tail ? sep : ''));
+---
+
+<div class="embed" style={`--embed-height: ${height}`}>
+  {src ? (
+    <iframe src={src} title={title} loading="lazy" allowfullscreen></iframe>
+  ) : (
+    <p class="embed-empty">{emptyText}</p>
+  )}
+  {src && (
+    <a class="embed-link text-link" href={directUrl} target="_blank" rel="noopener noreferrer">
+      {linkLabel} ↗
+    </a>
+  )}
+</div>

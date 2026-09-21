@@ -1,0 +1,29 @@
+---
+// Accommodation page. The prose here is placeholder copy — rewrite it for the
+// event. Like the about page, it is intentionally *not* in `src/i18n/`: the
+// dictionary holds UI chrome (title, eyebrow), the copy lives here.
+import { SITE } from '../../consts';
+import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={t('accommodation.title')} description={`Accommodation for ${SITE.title}.`}>
+  <section class="page-head section">
+    <p class="eyebrow">{t('accommodation.eyebrow')}</p>
+    <h1>Where to stay.</h1>
+    <!-- <p class="lead">Recommended accommodation and booking information will appear here.</p> -->
+  </section>
+  <section class="section">
+    <p>
+      As the date approaches, we will post a list of recommended places in which one can find
+      reasonable accommodation options. Accommodation is not provided as part of the tickets,
+      however, there may be limited availability for us to support students attending who are
+      experiencing financial hardship or otherwise require support in finding accommodation.
+    </p>
+    <p>
+      If this applies to you, please contact email us at <a href="mailto:rsc2027imperial@gmail.com"
+        >rsc2027imperial@gmail.com</a
+      >.
+    </p>
+  </section>
+</BaseLayout>

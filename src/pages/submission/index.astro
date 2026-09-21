@@ -1,0 +1,23 @@
+---
+// Submission page. The prose here is placeholder copy — rewrite it for the
+// event. Like the about page, it is intentionally *not* in `src/i18n/`: the
+// dictionary holds UI chrome (title, eyebrow), the copy lives here.
+import Embed from '../../components/Embed.astro';
+import { EMBEDS, SITE } from '../../consts';
+import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={t('submission.title')} description={`Submit an abstract to ${SITE.title}.`}>
+  <section class="page-head section">
+    <p class="eyebrow">{t('submission.eyebrow')}</p>
+    <h1>Submit an abstract.</h1>
+    <p class="lead">
+      Abstract submission guidelines, the submission form, and deadlines will appear here.
+    </p>
+  </section>
+
+  <section class="section">
+    <Embed {...EMBEDS.registrationForm} />
+  </section>
+</BaseLayout>

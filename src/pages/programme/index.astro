@@ -1,0 +1,99 @@
+---
+// Programme page. The schedule is built from one YAML file per day under
+// src/content/programme/ — edit those, not this template. The lead copy
+// below is page prose and lives here, not in `src/i18n/`.
+import { getCollection } from 'astro:content';
+import Embed from '../../components/Embed.astro';
+import { EMBEDS, SITE } from '../../consts';
+import { formatDate, locale, t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const days = (await getCollection('programme')).sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime(),
+);
+
+type Session = (typeof days)[number]['data']['sessions'][number];
+
+// Sessions that share a start and end time form one slot and render side by
+// side (parallel tracks). Slots are ordered by start time; sessions within a
+// slot by their `track` label.
+const toSlots = (sessions: readonly Session[]) => {
+  const slots = new Map<string, Session[]>();
+  for (const session of sessions) {
+    const key = `${session.start}-${session.end}`;
+    slots.set(key, [...(slots.get(key) ?? []), session]);
+  }
+  return [...slots.values()]
+    .map((group) => group.sort((a, b) => (a.track ?? '').localeCompare(b.track ?? '')))
+    .sort((a, b) => a[0].start.localeCompare(b[0].start));
+};
+
+const weekday = (date: Date) => new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(date);
+
+// Types that get a visible tag; `talk` is the default and `break` is styled
+// by muting alone.
+const taggedTypes = ['keynote', 'poster', 'social'] as const;
+type TaggedType = (typeof taggedTypes)[number];
+const isTagged = (type: Session['type']): type is TaggedType =>
+  (taggedTypes as readonly string[]).includes(type);
+---
+
+<BaseLayout title={t('programme.title')} description={`Programme for ${SITE.title}.`}>
+  <section class="page-head section">
+    <p class="eyebrow">{t('programme.eyebrow')}</p>
+    <h1>Talks, sessions, and social events.</h1>
+    <p class="lead">
+      Across the two-and-a-half day conference, we will have plenary talks, contributed talks along
+      with social events, dinners and a poster session.
+    </p>
+  </section>
+
+  {days.map((day) => {
+    const dayLabel = formatDate(day.data.date, 'long');
+    return (
+      <section
+        class="section programme-day"
+        aria-label={t('programme.listLabel', { day: dayLabel })}
+      >
+        <div class="section-heading">
+          <p class="eyebrow">{weekday(day.data.date)}</p>
+          <h2>{dayLabel}</h2>
+        </div>
+        <ol class="programme-list">
+          {toSlots(day.data.sessions).map((slot) => (
+            <li class="programme-slot" style={`--tracks: ${slot.length}`}>
+              <time datetime={`${day.id}T${slot[0].start}`}>
+                {slot[0].start}–{slot[0].end}
+              </time>
+              <div class="programme-sessions">
+                {slot.map((session) => (
+                  <article class={`session session-${session.type}`}>
+                    {isTagged(session.type) && (
+                      <p class="session-tag">{t(`programme.type.${session.type}`)}</p>
+                    )}
+                    <h3>{session.title}</h3>
+                    {(session.speaker || session.room) && (
+                      <p class="session-meta">
+                        {session.speaker && <span>{session.speaker}</span>}
+                        {session.room && <span>{session.room}</span>}
+                      </p>
+                    )}
+                    {session.abstract && <p class="session-abstract">{session.abstract}</p>}
+                  </article>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    );
+  })}
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">{t('programme.calendarEyebrow')}</p>
+      <h2>{t('programme.calendarHeading')}</h2>
+    </div>
+    <Embed {...EMBEDS.calendar} />
+  </section>
+</BaseLayout>

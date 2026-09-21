@@ -1,0 +1,68 @@
+# Day 1. Placeholder sessions — edit freely. Sessions sharing a start and
+# end time are shown side by side; use `track` to label them.
+# type: keynote | talk | poster | break | social (default: talk)
+date: 2027-08-31
+sessions:
+  - start: '09:00'
+    end: '10:00'
+    title: Registration and Welcome
+    room: Lecture Theatre 145
+  - start: '10:00'
+    end: '11:00'
+    title: Opening keynote
+    speaker: Speaker to be announced
+    room: Lecture Theatre 1
+    type: keynote
+  - start: '11:00'
+    end: '11:30'
+    title: Coffee
+    type: break
+    room: Huxley Common Room
+  - start: '11:30'
+    end: '13:00'
+    title: Contributed talks — Probability
+    room: Lecture Theatre 145
+    track: A
+  - start: '11:30'
+    end: '13:00'
+    title: Contributed talks — Statistics
+    room: Lecture Theatre 146
+    track: B
+  - start: '13:00'
+    end: '14:00'
+    title: Lunch
+    type: break
+  - start: '14:00'
+    end: '15:30'
+    title: Contributed talks — Probability
+    room: Lecture Theatre 145
+    track: A
+
+  - start: '14:00'
+    end: '15:30'
+    title: Contributed talks — Data Science
+    room: Lecture Theatre 146
+    track: B
+
+  - start: '15:30'
+    end: '16:00'
+    title: Coffee
+    type: break
+
+  - start: '16:00'
+    end: '17:00'
+    title: Contributed talks — Machine Learning
+    room: Lecture Theatre 145
+    track: A
+
+  - start: '16:00'
+    end: '17:00'
+    title: Contributed talks — Statistical
+    room: Lecture Theatre 146
+    track: B
+
+  - start: '18:00'
+    end: '20:00'
+    title: Welcome reception
+    room: Somewhere
+    type: social

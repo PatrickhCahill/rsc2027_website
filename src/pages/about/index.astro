@@ -3,9 +3,9 @@
 // intentionally *not* in `src/i18n/`: the dictionary holds UI chrome, so a
 // translator isn't handed someone else's biography, and you don't have to open
 // a dictionary file to edit your own about page.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SITE } from '../../consts';
+import { ORGANISERS, SITE } from '../../consts';
 import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
@@ -14,67 +14,145 @@ import { t } from '../../i18n';
 >
   <section class="page-head section">
     <p class="eyebrow">{t('about.eyebrow')}</p>
-    <h1>A measured profile for the person behind the work.</h1>
-    <p class="lead">
-      This page is shaped for a concise biography, a working philosophy, and the handful of details
-      that help readers understand how you think.
-    </p>
+    <h1>About the conference.</h1>
+    <p class="lead"></p>
   </section>
 
   <section class="section prose-grid">
     <div>
       <p class="eyebrow">Profile</p>
-      <h2>Quiet systems, clear writing, durable interfaces.</h2>
+      <h2>The conference, itself.</h2>
     </div>
     <div class="prose-stack">
       <p>
-        I work across product strategy, interface systems, and technical writing. The common thread
-        is structure: making complex material easier to scan, trust, and maintain.
+        RSC2027 will mark the 50th edition of the Research Students' Conference. This is a milestone
+        made possible by the longest student-led conference in the UK. We are a student-run
+        conference organised for students and early-career mathematicians that moves from place to
+        place each year. Our goal is to create a rich, collaborative and diverse environment that
+        brings together early-career researchers: proving an opportunity to network, explore open
+        problems within the field, and develop as a mathematicians and satisticians.
+      </p>
+      <!-- <p>
+        The Research Students' Conference in Probability and Statistics is the longest running
+        student-led conference in the UK. Now in its 49th edition, this is a conference organised
+        for PhD students by PhD students. The RSC creates a space for PhD students and pre-doctoral
+        resarchers across the UK and Europe to come together and discuss their latest research in a
+        collaborative, supportive environment of peers.
+      </p> -->
+      <p>
+        For this 50th annivesrary, the conference will be held in London with a call for students
+        across the UK and Europe to consider attending. Our committee is made up of fellow PhD
+        students who are excited to share our work and to learn from yours. Each year, the
+        conference has been held in different cities across the UK, passing from university to
+        university. Last year (2026) the 49th edition was hosted in Cambridge. Previously, the RSC
+        was held in Glasgow (2025), Exeter (2024) and Sheffield (2024).
+      </p>
+      <!-- <p>
+        Following online and hybrid versions around the Covid-19 pandemic, the conference has
+        returned to a fully in-person format, encouraging PhD student to meet their fellow academic
+        peers in a different host city across the UK each year. Passed from university to
+        university, the conference also creates opportunities for PhD students to take on more
+        senior conference roles often reserved for prominent academics at other conferences, such as
+        chairing sessions.
+      </p> -->
+      <!-- <p>
+        The previous editions of RSC were organised in Glasgow (2025), Exeter (2024) and Sheffield
+        (2023). The graphic below depicts the historical movement of RSC over the past 49
+        editions.*editions 4-6 taking place between 1982-84 are missing (source: RSC2010)
+      </p> -->
+    </div>
+
+    <!-- <div></div>
+    <div class="">
+      <p>
+        This year in London for the 49th edition, the conference focusses on accessiblity and
+        inclusion to encourage as many researchers as possible to attend and share their work as a
+        talk or poster, no matter how early-stage it is. Submissions are not assessed or excluded on
+        quality grounds, all submissions related to the listed topics are accepted and encouraged.
       </p>
       <p>
-        Astro Keel leaves room for this kind of context without forcing a loud personal brand.
-        Replace this placeholder with a specific background, current role, and the constraints that
-        shape your work.
+        As a conference aimed at PhD students, there is also an industry flavour to the conference
+        and we look forward to welcoming industry partners who will also present featured talks at
+        the conference and be available to interact with other delegates. Specific sponsors and
+        featured talks to be released soon!
       </p>
-    </div>
+    </div> -->
   </section>
 
   <section class="section" aria-label={t('about.ledgerLabel')}>
     <div class="about-ledger">
       <article>
         <span>01</span>
-        <h3>Current focus</h3>
-        <p>Designing lean content systems, portfolio surfaces, and editorial product pages.</p>
+        <h3>Past</h3>
+        <p>
+          We will have a focus on how the progress of statistics and probability theory as a field
+          over the last fifty years; how it has changed and evolved as mathematics and technology
+          have developped.
+        </p>
       </article>
       <article>
         <span>02</span>
-        <h3>Background</h3>
+        <h3>Present</h3>
         <p>
-          Experience spanning frontend implementation, design systems, and writing for technical
-          audiences.
+          We will look to showcase present work: discussion of open theoretical problems, new
+          techniques for applied questions along with fresh implementations for industrial problems.
         </p>
       </article>
       <article>
         <span>03</span>
-        <h3>Contact</h3>
+        <h3>Future</h3>
         <p>
-          Use this section for availability, collaboration preferences, or a direct contact route.
+          This conference is an opportunity for students to make new connections with their peers,
+          develop experience presenting work in the field and build themselves as the future leaders
+          in academia and industry.
         </p>
       </article>
     </div>
   </section>
 
-  <section class="section prose-grid about-closing">
+  <section class="section prose-grid">
     <div>
-      <p class="eyebrow">Method</p>
-      <h2>Structure before surface.</h2>
+      <p class="eyebrow">For 2027</p>
+      <h2>The Committee.</h2>
     </div>
-    <div class="prose-stack">
+    <div class="prose prose-stack">
       <p>
-        The theme treats the page like a working document: hierarchy first, rhythm second, visual
-        signature third. Fine rules, generous spacing, and type contrast carry the identity without
-        competing with the content.
+        This year the committee is composed of the following PhD students from Imperial College
+        London:
       </p>
+      <ul class="organiser-list">
+        {ORGANISERS.map((name) => <li>{name}</li>)}
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">For 2028</p>
+      <h3>The next committee!</h3>
+    </div>
+    <div>
+      <p>
+        Each year a new university will host the RSC which mean that a new group of students will be
+        needed to help organise the conference. Our fifty years of history means we have established
+        relationships with universities and sponsors across the UK. This makes organising a great
+        opportunity.
+
+        <!-- RSC has thrived on passing from university to university through PhD students for nearly half a century. The established presence with sponsors and universities across the UK makes it a relatively straightforward conference to organise with access to a wealth of historical resources - and something that looks great on a CV for when you complete your PhD. -->
+      </p>
+      <p>Interested in hosting the 51th RSC? Get in contact with us about hosting for 2028.</p>
     </div>
   </section>
+
+  <!-- <section class="section prose-grid about-closing">
+    <div>
+      <p class="eyebrow">Royal Statistical Society</p>
+      <h2>RSC and the RSS.</h2>
+    </div>
+    <div class="prose prose-stack">
+      <p>
+        The RSC shares a close partnership with the Royal Statistical Society. Not only as a sponsor of the conference this year, the RSS is also the pre-eminent organisation and network for statisticians in the UK. In particular, as part of the RSC, the winners of best talk and best poster each year at the RSC are awarded free registration for the subsequent year's RSS conference.
+      </p>
+      <p>
+        This year the RSS International Conference 2026 takes place in Bournemouth, from 7-10 September. Details are available on the website. Also, the RSS offers free membership to current students as an e-student, as well as reduced rates for joining as a fellow to access a range of benefits. More detail on RSS memberships here.
+      </p>
+    </div>
+  </section> -->
 </BaseLayout>

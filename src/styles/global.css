@@ -185,6 +185,66 @@ a:not(.brand, .button):hover {
   background-size: 100% 1px;
 }
 
+/* Dropdown group: a native <details>, so it needs no script and works on
+   touch. The summary is styled to match sibling links; the panel hangs below
+   it on desktop and flows inline on narrow screens (see the media query). */
+.nav-group {
+  position: relative;
+}
+
+.nav-group summary {
+  padding: 0.5rem 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-group summary::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.45em;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.nav-group[open] summary::after {
+  transform: translateY(0.05em) rotate(225deg);
+}
+
+.nav-group summary[data-active],
+.nav-group[open] summary {
+  color: var(--color-text);
+}
+
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  z-index: 101;
+  display: grid;
+  min-width: 12rem;
+  padding-block: 0.35rem;
+  background: var(--color-bg);
+  border: var(--hairline);
+  transform: translateX(-50%);
+}
+
+.site-nav .nav-menu a {
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+}
+
 .theme-toggle {
   display: grid;
   width: 2.35rem;
@@ -216,10 +276,32 @@ a:not(.brand, .button):hover {
 .hero {
   min-height: 64vh;
   display: grid;
+  /* Text in the first column; the splash video sits in the second. */
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  column-gap: clamp(1.5rem, 5vw, 4rem);
   align-content: center;
   padding-block: clamp(3.5rem, 8vw, 6rem);
   border-bottom: var(--hairline);
   position: relative;
+}
+
+.hero > * {
+  grid-column: 1;
+}
+
+.hero-video {
+  grid-column: 2;
+  /* Spans eyebrow, title, lead, and action row; the sponsor row below is
+     full width. */
+  grid-row: 1 / 5;
+  align-self: center;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero .sponsor-row {
+  grid-column: 1 / -1;
 }
 
 .hero::before {
@@ -246,6 +328,14 @@ a:not(.brand, .button):hover {
 
 .hero > :nth-child(4) {
   animation-delay: 270ms;
+}
+
+.hero > :nth-child(5) {
+  animation-delay: 360ms;
+}
+
+.hero > :nth-child(6) {
+  animation-delay: 450ms;
 }
 
 /* Event title: a two-tier h1 — the kicker sits as a smaller first line. */
@@ -279,6 +369,22 @@ a:not(.brand, .button):hover {
   height: 1px;
   margin-top: calc(var(--baseline) * 1.25);
   background: var(--color-accent);
+}
+
+.organiser-main-page {
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem; /* row gap, column gap */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.organiser-main-page li {
+  white-space: nowrap;
 }
 
 .eyebrow {
@@ -360,6 +466,128 @@ p {
   margin-top: calc(var(--baseline) * 1.5);
 }
 
+/* Sponsor logos under the hero actions: a labelled, hairline-topped row. */
+.sponsor-row {
+  margin-top: calc(var(--baseline) * 2);
+  padding-top: calc(var(--baseline) * 0.85);
+  border-top: var(--hairline);
+}
+
+.sponsor-row .eyebrow {
+  margin-bottom: calc(var(--baseline) * 0.6);
+}
+
+.sponsor-row ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem clamp(1.5rem, 4vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sponsor-row img {
+  display: block;
+  width: auto;
+  height: 1.75rem;
+}
+
+/* Organisers on the home page: names as hairline rows, two columns wide. */
+.organiser-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  margin: 0;
+  padding: 0;
+  border-top: var(--hairline);
+  list-style: none;
+}
+
+.organiser-list li {
+  padding-block: calc(var(--baseline) * 0.6);
+  border-bottom: var(--hairline);
+  color: var(--color-muted);
+}
+
+/* Programme: each day is a hairline-row list of time slots. A slot holds one
+   session, or several side by side when they run in parallel (`--tracks` is
+   set per slot from the data). */
+.programme-day .section-heading h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.programme-list {
+  margin: 0;
+  padding: 0;
+  border-top: var(--hairline);
+  list-style: none;
+}
+
+.programme-slot {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 0 var(--baseline);
+  padding-block: calc(var(--baseline) * 0.85);
+  border-bottom: var(--hairline);
+}
+
+.programme-slot time {
+  padding-top: 0.15rem;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.programme-sessions {
+  display: grid;
+  grid-template-columns: repeat(var(--tracks, 1), minmax(0, 1fr));
+  gap: var(--baseline);
+}
+
+.session h3 {
+  max-width: none;
+  margin-bottom: calc(var(--baseline) * 0.25);
+  font-size: 1.15rem;
+}
+
+.session-tag {
+  margin-bottom: calc(var(--baseline) * 0.3);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.session-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.session-abstract {
+  max-width: var(--prose-width);
+  margin: calc(var(--baseline) * 0.5) 0 0;
+  color: var(--color-muted);
+}
+
+.session-break h3 {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.session-keynote {
+  padding: calc(var(--baseline) * 0.6) clamp(1rem, 2vw, 1.5rem);
+  background: var(--color-accent-soft);
+}
+
 .button {
   display: inline-flex;
   min-height: 2.85rem;
@@ -383,6 +611,50 @@ p {
 
 .text-link {
   font-weight: 700;
+}
+
+/* Third-party embed frame — see src/components/Embed.astro. Always light,
+   whatever the scheme, because the widget inside is. */
+.embed {
+  display: grid;
+  gap: calc(var(--baseline) * 0.6);
+  /* A fifth wider than running text, and centred in the content column. */
+  max-width: calc(var(--prose-width) * 1.2);
+  margin-inline: auto;
+}
+
+.embed iframe {
+  display: block;
+  width: 100%;
+  height: var(--embed-height, 1200px);
+  border: var(--hairline);
+  background: #fff;
+}
+
+.embed-empty {
+  padding: calc(var(--baseline) * 2) clamp(1.5rem, 3vw, 2.25rem);
+  border: var(--hairline);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.embed-link {
+  justify-self: start;
+  font-size: 0.88rem;
+}
+
+/* Leaflet map on /venue/. Needs an explicit height or it renders nothing;
+   framed like the embeds since the tiles are always light. */
+.venue-map {
+  height: clamp(20rem, 55vh, 32rem);
+  border: var(--hairline);
+  background: #fff;
+}
+
+.venue-map .leaflet-popup-content {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 .split-overview,
@@ -421,6 +693,66 @@ p {
 .empty-state p {
   max-width: var(--prose-width);
   color: var(--color-muted);
+}
+
+/* Speaker card: name (and talk) on the left, institution on the right with
+   its logo. Logos sit on a light tile so JPEGs and dark-on-transparent marks
+   both survive the dark scheme. The keynote card is tinted and labelled. */
+.feature-list .speaker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.feature-list .speaker-keynote {
+  background: var(--color-accent-soft);
+}
+
+.speaker-role {
+  margin-bottom: calc(var(--baseline) * 0.4);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.speaker-main h3 {
+  margin-bottom: 0;
+}
+
+.feature-list .speaker-talk {
+  margin-top: calc(var(--baseline) * 0.4);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.feature-list .speaker-affiliation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 16rem;
+  margin: 0;
+  text-align: right;
+}
+
+.speaker-affiliation img {
+  flex: none;
+  order: 1;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding: 0.35rem;
+  border: var(--hairline);
+  background: #fff;
+  object-fit: contain;
+}
+
+.speaker-affiliation span {
+  min-width: 0;
+  line-height: 1.35;
 }
 
 .empty-state {
@@ -1019,11 +1351,45 @@ pre code {
     grid-column: 1 / -1;
     grid-row: 2;
     justify-content: flex-start;
-    overflow-x: auto;
+    /* Wrap rather than scroll so an open dropdown can flow inline. */
+    flex-wrap: wrap;
+  }
+
+  .nav-group[open] {
+    flex-basis: 100%;
+  }
+
+  .nav-menu {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    min-width: 0;
+    margin-top: 0.15rem;
+    padding: 0 0 0.25rem 0.75rem;
+    border: 0;
+    border-left: 1px solid var(--color-accent);
+    transform: none;
+  }
+
+  .site-nav .nav-menu a {
+    padding-inline: 0;
+    white-space: normal;
   }
 
   .hero::before {
     height: 4rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-video {
+    grid-column: 1;
+    grid-row: auto;
+    max-width: 28rem;
+    margin-bottom: var(--baseline);
   }
 
   .split-overview,
@@ -1032,8 +1398,25 @@ pre code {
   .about-ledger,
   .content-index,
   .article-layout,
-  .work-card {
+  .work-card,
+  .organiser-list,
+  .feature-list .speaker,
+  .programme-slot,
+  .programme-sessions {
     grid-template-columns: 1fr;
+  }
+
+  .programme-slot {
+    gap: calc(var(--baseline) * 0.4) 0;
+  }
+
+  .feature-list .speaker-affiliation {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .speaker-affiliation img {
+    order: 0;
   }
 
   .index-sidebar,
@@ -1072,4 +1455,17 @@ pre code {
   h3 {
     max-width: 100%;
   }
+}
+
+.form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form iframe {
+  display: block;
+  width: 100%;
+  min-height: 500px;
+  border: 0;
 }

@@ -2,17 +2,47 @@
 // Sponsorship page. The prose here is placeholder copy — rewrite it for the
 // event. Like the about page, it is intentionally *not* in `src/i18n/`: the
 // dictionary holds UI chrome (title, eyebrow), the copy lives here.
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SITE } from '../../consts';
+import { SITE, SPONSORS } from '../../consts';
 import { t } from '../../i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/url';
 ---
 
 <BaseLayout title={t('sponsorship.title')} description={`Sponsor ${SITE.title}.`}>
   <section class="page-head section">
     <p class="eyebrow">{t('sponsorship.eyebrow')}</p>
-    <h1>Support the conference.</h1>
+    <h1>Our supporters.</h1>
     <p class="lead">
-      Sponsorship tiers, what your support funds, and how to get in touch will appear here.
+      <!-- Sponsorship tiers, what your support funds, and how to get in touch will appear here. -->
     </p>
+
+    <div class="sponsor-row" aria-label={t('home.sponsorsLabel')}>
+      <p class="eyebrow">{t('home.sponsorsEyebrow')}</p>
+      <ul>
+        {
+          SPONSORS.map((sponsor) => (
+            <li>
+              <img
+                src={withBase(sponsor.logo)}
+                alt={sponsor.name}
+                width={sponsor.width}
+                height={sponsor.height}
+                loading="lazy"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+  <section class="section">
+    <p class="lead">
+      If you are an organisation interested in supporting students in probability and statistics,
+      please considering providing your support to allow us to host this conference and those into
+      the future.
+    </p>
+    <div class="action-row" aria-label={t('home.primaryLinks')}>
+      <a class="button" href="mailto:rsc2027imperial@gmail.com"> Get in contact </a>
+    </div>
   </section>
 </BaseLayout>

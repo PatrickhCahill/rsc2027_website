@@ -1,0 +1,55 @@
+# Day 2. Placeholder sessions — edit freely.
+date: 2027-09-01
+sessions:
+  - start: '09:00'
+    end: '10:00'
+    title: Plenary talk
+    speaker: Speaker to be announced
+    room: Lecture Theatre 1
+    type: keynote
+
+  - start: '10:00'
+    end: '10:30'
+    title: Coffee
+    type: break
+
+  - start: '10:30'
+    end: '12:00'
+    title: Contributed talks — Biostatistics
+    room: Lecture Theatre 1
+    track: A
+
+  - start: '10:30'
+    end: '12:00'
+    title: Contributed talks — Statistical machine learning
+    room: Lecture Theatre 2
+    track: B
+
+  - start: '12:00'
+    end: '13:00'
+    title: Lunch
+    type: break
+
+  - start: '13:00'
+    end: '14:30'
+    title: Poster session
+    room: Huxley Building foyer
+    type: poster
+
+  - start: '14:30'
+    end: '16:00'
+    title: Contributed talks — Data science
+    room: Lecture Theatre 1
+    track: A
+
+  - start: '14:30'
+    end: '16:00'
+    title: Contributed talks — Applied probability
+    room: Lecture Theatre 2
+    track: B
+
+  - start: '19:00'
+    end: '22:00'
+    title: Conference dinner
+    room: Venue to be confirmed
+    type: social

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import StructuredData from '../components/StructuredData.astro';
-import { SITE } from '../consts';
+import { ORGANISERS, SITE, SPEAKERS, SPONSORS, VENUE } from '../consts';
 import { t } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/url';
@@ -31,13 +31,25 @@ const websiteSchema = {
 <BaseLayout description={SITE.description}>
   <StructuredData slot="head" schema={websiteSchema} />
   <section class="hero section">
-    <p class="eyebrow">Imperial College / Late Summer 2027 / London</p>
+    <p class="eyebrow">Imperial College / Late Summer 2027 / Kengsington Campus</p>
     <h1>
       <span class="hero-kicker">50th Research Students'</span>
       Conference in Probability and Statistics.
     </h1>
+    <video
+      class="hero-video"
+      width="854"
+      height="480"
+      autoplay
+      muted
+      playsinline
+      aria-hidden="true"
+    >
+      <source src={withBase('SamplingNormalDistribution.mov')} type='video/mp4; codecs="hvc1"' />
+      <source src={withBase('SamplingNormalDistribution.webm')} type="video/webm" />
+    </video>
     <div class="lead">
-      <p>
+      <!-- <p>
         The 50th Research Students' Conference in Probability and Statistics will be held in London
         at Imperial College in late summer 2027. The conference will bring together PhD and
         predoctoral researchers in probability, statistics and related fields from across the UK and
@@ -47,7 +59,7 @@ const websiteSchema = {
         This is the 50th anniversary of the conference, the longest-running student-led and
         student-organised conference in probability and statistics. Previous conferences were held
         at Cambridge (2026), Glasgow (2025), Exeter (2024) and Sheffield (2023).
-      </p>
+      </p> -->
     </div>
     <div class="action-row" aria-label={t('home.primaryLinks')}>
       <a class="button" href={withBase('/registration/')}>
@@ -57,27 +69,122 @@ const websiteSchema = {
         {t('home.sponsor')}
       </a>
     </div>
+    <div class="sponsor-row" aria-label={t('home.sponsorsLabel')}>
+      <p class="eyebrow">{t('home.sponsorsEyebrow')}</p>
+      <ul>
+        {SPONSORS.map((sponsor) => (
+          <li>
+            <img
+              src={withBase(sponsor.logo)}
+              alt={sponsor.name}
+              width={sponsor.width}
+              height={sponsor.height}
+              loading="lazy"
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   </section>
 
   <section class="section split-overview" aria-label={t('home.overviewLabel')}>
     <div>
-      <p class="eyebrow">Principles</p>
-      <h2>Readable first, decorative last.</h2>
+      <p class="eyebrow">Overview</p>
+      <h2>Important Information.</h2>
     </div>
     <div class="feature-list">
       <article>
-        <h3>Baseline rhythm</h3>
-        <p>Vertical spacing follows a steady cadence for long-form reading.</p>
+        <h3>Registration</h3>
+        <p>Registration and abstract submission closes Summer 2026</p>
       </article>
       <article>
-        <h3>Typed content</h3>
-        <p>Collections are prepared for project case studies and durable notes.</p>
+        <h3>Location</h3>
+        <p>Imperial College London. {VENUE.address}</p>
       </article>
       <article>
-        <h3>Keel lines</h3>
-        <p>Fine rules create structure without relying on decorative effects.</p>
+        <h3>Topics covered</h3>
+        <p>
+          We welcome contributions across Satistics, Probability, Biostatistics, Statistical Machine
+          Learning and Data Science
+        </p>
       </article>
     </div>
+  </section>
+
+  <section class="section split-overview" aria-label={t('home.speakersLabel')}>
+    <div>
+      <p class="eyebrow">{t('home.speakersEyebrow')}</p>
+      <h2>Plenary speakers.</h2>
+    </div>
+    <div class="feature-list">
+      {SPEAKERS.map((speaker) => (
+        <article class:list={['speaker', { 'speaker-keynote': speaker.keynote }]}>
+          <div class="speaker-main">
+            {speaker.keynote && <p class="speaker-role">{t('home.keynote')}</p>}
+            <h3>{speaker.href ? <a href={speaker.href}>{speaker.name}</a> : speaker.name}</h3>
+            {speaker.talk && <p class="speaker-talk">{speaker.talk}</p>}
+          </div>
+          <p class="speaker-affiliation">
+            {speaker.affiliationLogo && (
+              <img
+                src={withBase(speaker.affiliationLogo)}
+                alt=""
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+            )}
+            <span>{speaker.affiliation}</span>
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split-overview" aria-label={t('home.overviewLabel')}>
+    <div>
+      <p class="eyebrow">Contents</p>
+      <h2>What to expect.</h2>
+      <p>
+        In addition to talks and posters, there will be a conference dinner along with social
+        activities planned each day to enable networking between early career mathematicians.
+      </p>
+    </div>
+    <div class="feature-list">
+      <article>
+        <h3>Keynote and Plenary Talks</h3>
+        <p>
+          Leading experts will present an overview on the current state of Statistics and
+          Probability in a world of rapidly changing mathematics.
+        </p>
+      </article>
+      <article>
+        <h3>Contributed Talks</h3>
+        <p>
+          In addition to the named speakers, there will be contributed talks from attendees. We
+          highly recommend registrants submit abstracts to speak.
+        </p>
+      </article>
+      <article>
+        <h3>Poster Session</h3>
+        <p>
+          We will have a dedicated poster session for which there will be <em>awards</em>. We
+          recommend all attendees apply. See our submission for details on recommended formats.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-label={t('home.organisersLabel')}>
+    <div>
+      <p class="eyebrow">{t('home.organisersEyebrow')}</p>
+      <!-- <h2>Organisers.</h2> -->
+    </div>
+    <ul class="organiser-main-page">
+      {ORGANISERS.map((name) => (
+        <li>{name}</li>
+      ))}
+    </ul>
   </section>
 
   <!-- <section class="section index-feed" aria-labelledby="latest-works">
