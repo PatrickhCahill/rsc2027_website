@@ -8,7 +8,7 @@ import { SITE } from '../../../consts';
 
 // Build-time generated Open Graph images for every blog post and work entry,
 // rendered in the theme's light palette (see global.css tokens). The static
-// `public/og.jpg` remains the site-wide fallback for all other pages.
+// `public/og.png` remains the site-wide fallback for all other pages.
 
 interface OgProps {
   title: string;

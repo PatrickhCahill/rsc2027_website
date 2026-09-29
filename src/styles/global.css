@@ -1,18 +1,18 @@
 :root {
   color-scheme: light;
   /* Change this one line to retune the theme accent. */
-  --color-accent: oklch(0.54 0.14 35);
+  --color-accent: #008080ff;
   --color-accent-hover: color-mix(in oklch, var(--color-accent), black 12%);
   --color-accent-soft: color-mix(in oklch, var(--color-accent), transparent 84%);
   /* Text/icon color on top of a filled accent surface. */
-  --color-on-accent: oklch(0.99 0.003 100);
-  --color-bg: oklch(0.99 0.003 100);
-  --color-surface: oklch(0.965 0.004 100);
-  --color-text: oklch(0.25 0.01 250);
-  --color-muted: oklch(0.5 0.012 250);
-  --color-line: oklch(0.86 0.008 100);
-  --color-line-strong: oklch(0.72 0.012 120);
-  --color-soft: oklch(0.94 0.006 100);
+  --color-on-accent: #f5f5f5ff;
+  --color-bg: #f5f5f5ff;
+  --color-surface: #e6e6faff;
+  --color-text: #232333ff;
+  --color-muted: #708090ff;
+  --color-line: #dadaf8ff;
+  --color-line-strong: #c1c1f3ff;
+  --color-soft: #e6e6faff;
   --font-display: 'Fraunces Variable', Georgia, serif;
   --font-body: 'Public Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
@@ -27,51 +27,51 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --color-accent: oklch(0.72 0.13 42);
+    --color-accent: #98fb98ff;
     --color-accent-hover: color-mix(in oklch, var(--color-accent), white 10%);
     --color-accent-soft: color-mix(in oklch, var(--color-accent), transparent 78%);
     /* The dark-scheme accent is light, so filled surfaces need dark text. */
-    --color-on-accent: oklch(0.18 0.009 250);
-    --color-bg: oklch(0.18 0.009 250);
-    --color-surface: oklch(0.22 0.01 250);
-    --color-text: oklch(0.93 0.006 95);
-    --color-muted: oklch(0.69 0.012 250);
-    --color-line: oklch(0.34 0.012 250);
-    --color-line-strong: oklch(0.44 0.016 230);
-    --color-soft: oklch(0.26 0.01 250);
+    --color-on-accent: #232333ff;
+    --color-bg: #232333ff;
+    --color-surface: #161a1dff;
+    --color-text: #f5f5f5ff;
+    --color-muted: #969ca3ff;
+    --color-line: #33393eff;
+    --color-line-strong: #4a545aff;
+    --color-soft: #202429ff;
   }
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --color-accent: oklch(0.54 0.14 35);
+  --color-accent: #008080ff;
   --color-accent-hover: color-mix(in oklch, var(--color-accent), black 12%);
   --color-accent-soft: color-mix(in oklch, var(--color-accent), transparent 84%);
   /* Text/icon color on top of a filled accent surface. */
-  --color-on-accent: oklch(0.99 0.003 100);
-  --color-bg: oklch(0.99 0.003 100);
-  --color-surface: oklch(0.965 0.004 100);
-  --color-text: oklch(0.25 0.01 250);
-  --color-muted: oklch(0.5 0.012 250);
-  --color-line: oklch(0.86 0.008 100);
-  --color-line-strong: oklch(0.72 0.012 120);
-  --color-soft: oklch(0.94 0.006 100);
+  --color-on-accent: #f5f5f5ff;
+  --color-bg: #f5f5f5ff;
+  --color-surface: #e6e6faff;
+  --color-text: #232333ff;
+  --color-muted: #708090ff;
+  --color-line: #dadaf8ff;
+  --color-line-strong: #c1c1f3ff;
+  --color-soft: #e6e6faff;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --color-accent: oklch(0.72 0.13 42);
+  --color-accent: #98fb98ff;
   --color-accent-hover: color-mix(in oklch, var(--color-accent), white 10%);
   --color-accent-soft: color-mix(in oklch, var(--color-accent), transparent 78%);
   /* The dark-scheme accent is light, so filled surfaces need dark text. */
-  --color-on-accent: oklch(0.18 0.009 250);
-  --color-bg: oklch(0.18 0.009 250);
-  --color-surface: oklch(0.22 0.01 250);
-  --color-text: oklch(0.93 0.006 95);
-  --color-muted: oklch(0.69 0.012 250);
-  --color-line: oklch(0.34 0.012 250);
-  --color-line-strong: oklch(0.44 0.016 230);
-  --color-soft: oklch(0.26 0.01 250);
+  --color-on-accent: #232333ff;
+  --color-bg: #232333ff;
+  --color-surface: #161a1dff;
+  --color-text: #f5f5f5ff;
+  --color-muted: #969ca3ff;
+  --color-line: #33393eff;
+  --color-line-strong: #4a545aff;
+  --color-soft: #202429ff;
 }
 
 * {

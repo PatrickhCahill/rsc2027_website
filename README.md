@@ -17,7 +17,7 @@ Most day-to-day changes need no code:
 | Home page text                   | `src/pages/index.astro`                    |
 | About, Registration, Sponsorship | `src/pages/<page>/index.astro`             |
 | Accent colour                    | `src/styles/global.css` → `--color-accent` |
-| Share image / favicon            | `public/og.jpg`, `public/favicon.svg`      |
+| Share image / favicon            | `public/og.png`, `public/favicon.svg`      |
 
 Pages are written in [Astro](https://astro.build) — HTML with a small
 JavaScript block at the top. Content collections (speakers, programme) live

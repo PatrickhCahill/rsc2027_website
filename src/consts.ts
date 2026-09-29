@@ -17,7 +17,7 @@ export const SITE = {
   /** Description of the RSS feed at /rss.xml. */
   rssDescription: '31 August 2027 to 4 September 2027 Conference.',
   /** Default social share image, relative to the site root (see public/). */
-  ogImage: '/og.jpg',
+  ogImage: '/og.png',
   /** Post author, emitted in JSON-LD BlogPosting structured data.
    *  Leave empty ('') to omit the author field. */
   author: 'Patrick H. Cahill',
