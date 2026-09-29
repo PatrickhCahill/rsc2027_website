@@ -121,7 +121,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         London:
       </p>
       <ul class="organiser-list">
-        {ORGANISERS.map((name) => <li>{name}</li>)}
+        {ORGANISERS.map((name) => (
+          <li>{name}</li>
+        ))}
       </ul>
     </div>
     <div>
@@ -134,25 +136,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         needed to help organise the conference. Our fifty years of history means we have established
         relationships with universities and sponsors across the UK. This makes organising a great
         opportunity.
-
         <!-- RSC has thrived on passing from university to university through PhD students for nearly half a century. The established presence with sponsors and universities across the UK makes it a relatively straightforward conference to organise with access to a wealth of historical resources - and something that looks great on a CV for when you complete your PhD. -->
       </p>
       <p>Interested in hosting the 51th RSC? Get in contact with us about hosting for 2028.</p>
     </div>
   </section>
 
-  <!-- <section class="section prose-grid about-closing">
+  <section class="section prose-grid about-closing">
     <div>
       <p class="eyebrow">Royal Statistical Society</p>
       <h2>RSC and the RSS.</h2>
     </div>
     <div class="prose prose-stack">
       <p>
-        The RSC shares a close partnership with the Royal Statistical Society. Not only as a sponsor of the conference this year, the RSS is also the pre-eminent organisation and network for statisticians in the UK. In particular, as part of the RSC, the winners of best talk and best poster each year at the RSC are awarded free registration for the subsequent year's RSS conference.
+        The Royal Statistical Society and the RSC have a long history together. Founded almost
+        two-hundred years ago, in 1834, the RSS has long been a hub in the international world of
+        statistics, serving as an import network for statisticians in the UK. As is tradition,
+        prizes awarded at the RSC 2027 will include free registration to the subsequent RSS
+        conference.
       </p>
       <p>
-        This year the RSS International Conference 2026 takes place in Bournemouth, from 7-10 September. Details are available on the website. Also, the RSS offers free membership to current students as an e-student, as well as reduced rates for joining as a fellow to access a range of benefits. More detail on RSS memberships here.
+        <a href="https://rss.org.uk/training-events/events/rss-2027-international-conference/">
+          RSS 2027
+        </a>{' '}
+        will take place in Newport from 6-9<sup>th</sup> September 2027. Student are entitled to
+        concessionary rates of membership, including a free e-membership. We encourage our attendees
+        to consider membership in the RSS
       </p>
     </div>
-  </section> -->
+  </section>
 </BaseLayout>
