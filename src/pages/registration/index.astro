@@ -3,8 +3,7 @@
 // event. Like the about page, it is intentionally *not* in `src/i18n/`: the
 // dictionary holds UI chrome (title, eyebrow), the copy lives here. The form
 // URL and height live in `EMBEDS` in `src/consts.ts`.
-import Embed from '../../components/Embed.astro';
-import { EMBEDS, SITE } from '../../consts';
+import { SITE } from '../../consts';
 import { t } from '../../i18n';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../lib/url';
@@ -23,7 +22,7 @@ import { withBase } from '../../lib/url';
       .
     </p>
   </section>
-  <section class="section">
+  <!-- <section class="section">
     <Embed {...EMBEDS.registrationForm} />
-  </section>
+  </section> -->
 </BaseLayout>
