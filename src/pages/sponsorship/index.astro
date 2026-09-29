@@ -27,6 +27,7 @@ import { withBase } from '../../lib/url';
                 alt={sponsor.name}
                 width={sponsor.width}
                 height={sponsor.height}
+                style={sponsor.displayHeight && `--logo-height: ${sponsor.displayHeight}`}
                 loading="lazy"
               />
             </li>

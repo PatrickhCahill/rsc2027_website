@@ -291,7 +291,7 @@ a:not(.brand, .button):hover {
 .hero {
   min-height: 64vh;
   display: grid;
-  /* Text in the first column; the splash video sits in the second. */
+  /* Text in the first column; the splash animation sits in the second. */
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   column-gap: clamp(1.5rem, 5vw, 4rem);
   align-content: center;
@@ -313,6 +313,7 @@ a:not(.brand, .button):hover {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .hero .sponsor-row {
@@ -369,6 +370,16 @@ a:not(.brand, .button):hover {
 
 .section {
   padding-block: clamp(3.5rem, 5.5vw, 5.5rem);
+}
+
+/* The sponsor row closes the hero, so keep the gap to the next section
+   to about a third of the usual two paddings. */
+.hero.section {
+  padding-bottom: clamp(1.15rem, 1.8vw, 1.85rem);
+}
+
+.hero + .section {
+  padding-top: clamp(1.15rem, 1.8vw, 1.85rem);
 }
 
 .page-head {
@@ -505,7 +516,8 @@ p {
 .sponsor-row img {
   display: block;
   width: auto;
-  height: 1.75rem;
+  /* Per-logo override from `displayHeight` in src/consts.ts. */
+  height: var(--logo-height, 1.75rem);
 }
 
 /* Organisers on the home page: names as hairline rows, two columns wide. */

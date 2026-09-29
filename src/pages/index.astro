@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import SamplingAnimation from '../components/SamplingAnimation.astro';
 import StructuredData from '../components/StructuredData.astro';
 import { ORGANISERS, SITE, SPEAKERS, SPONSORS, VENUE } from '../consts';
 import { t } from '../i18n';
@@ -36,18 +37,7 @@ const websiteSchema = {
       <span class="hero-kicker">50th Research Students'</span>
       Conference in Probability and Statistics.
     </h1>
-    <video
-      class="hero-video"
-      width="854"
-      height="480"
-      autoplay
-      muted
-      playsinline
-      aria-hidden="true"
-    >
-      <source src={withBase('SamplingNormalDistribution.mov')} type='video/mp4; codecs="hvc1"' />
-      <source src={withBase('SamplingNormalDistribution.webm')} type="video/webm" />
-    </video>
+    <SamplingAnimation />
     <div class="lead">
       <!-- <p>
         The 50th Research Students' Conference in Probability and Statistics will be held in London
@@ -79,6 +69,7 @@ const websiteSchema = {
               alt={sponsor.name}
               width={sponsor.width}
               height={sponsor.height}
+              style={sponsor.displayHeight && `--logo-height: ${sponsor.displayHeight}`}
               loading="lazy"
             />
           </li>

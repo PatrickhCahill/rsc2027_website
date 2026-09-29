@@ -75,9 +75,13 @@ export interface Sponsor {
   name: string;
   /** Site-root path under `public/` (gets `base` applied). */
   logo: string;
-  /** Intrinsic pixel size of the image, so the browser reserves space. */
+  /** Intrinsic pixel size of the image, so the browser reserves space.
+   *  Only the ratio matters — these do not set the displayed size. */
   width: number;
   height: number;
+  /** Displayed height as a CSS length, e.g. '2.5rem'. Defaults to 1.75rem.
+   *  The width follows from the logo's aspect ratio. */
+  displayHeight?: string;
   /** Optional link to the sponsor's site. */
   href?: string;
 }
@@ -85,9 +89,27 @@ export interface Sponsor {
 /** Sponsor logos for the home page hero. Placeholders for now — drop the
  *  real logos in `public/sponsor_logos/` and list them here. */
 export const SPONSORS: readonly Sponsor[] = [
-  { name: 'Sponsor', logo: '/sponsor_logos/sponsor0.png', width: 227, height: 30 },
-  { name: 'Sponsor', logo: '/sponsor_logos/sponsor0.png', width: 227, height: 30 },
-  { name: 'Sponsor', logo: '/sponsor_logos/sponsor0.png', width: 227, height: 30 },
+  {
+    name: 'Imperial College London',
+    logo: '/sponsor_logos/imperial_sponsorship.svg',
+    width: 2064,
+    height: 200,
+    displayHeight: '1.75rem',
+  },
+  {
+    name: 'Department of Mathematics, Imperial',
+    logo: '/sponsor_logos/imperial_maths_sponsorship.svg',
+    width: 600,
+    height: 200,
+    displayHeight: '5rem',
+  },
+  {
+    name: 'Royal Statistical Society',
+    logo: '/sponsor_logos/rss_logo.svg',
+    width: 167,
+    height: 93,
+    displayHeight: '5rem',
+  },
 ];
 
 export interface Speaker {
