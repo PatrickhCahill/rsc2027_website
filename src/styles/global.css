@@ -160,11 +160,26 @@ a:not(.brand, .button):hover {
   letter-spacing: 0.01em;
 }
 
-.brand-mark {
-  width: 0.95rem;
-  height: 1.85rem;
-  border-left: 1px solid var(--color-accent);
-  border-right: 1px solid var(--color-accent);
+.brand-logo {
+  display: block;
+  width: auto;
+  height: 6rem;
+  /* Shrinks over the first 200px of scroll; browsers without scroll-driven
+     animations (Firefox) keep the full-size logo. */
+  animation: shrink-logo linear both;
+  animation-timeline: scroll();
+  animation-range: 0 200px;
+}
+
+@keyframes shrink-logo {
+  to {
+    height: 3rem;
+  }
+}
+
+:root[data-theme='dark'] .brand-logo-light,
+:root:not([data-theme='dark']) .brand-logo-dark {
+  display: none;
 }
 
 .site-nav {
@@ -1454,6 +1469,14 @@ pre code {
   h2,
   h3 {
     max-width: 100%;
+  }
+}
+
+/* Phone widths: shrink nav text so the links fit on one row. */
+@media (max-width: 480px) {
+  .site-nav a,
+  .nav-group summary {
+    font-size: 0.78rem;
   }
 }
 
