@@ -1,23 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import SamplingAnimation from '../components/SamplingAnimation.astro';
 import StructuredData from '../components/StructuredData.astro';
 import { ORGANISERS, SITE, SPEAKERS, SPONSORS, VENUE } from '../consts';
 import { t } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/url';
-
-const works = (await getCollection('works'))
-  .sort((a, b) => {
-    const byDate = b.data.publishDate.getTime() - a.data.publishDate.getTime();
-    return byDate || (a.data.order ?? 999) - (b.data.order ?? 999);
-  })
-  .slice(0, 3);
-
-const posts = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
 
 const site = Astro.site ?? new URL(Astro.url.origin);
 const websiteSchema = {

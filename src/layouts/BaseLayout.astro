@@ -54,7 +54,8 @@ const isActive = (href: string) => {
     <link rel="icon" href={withBase('/favicon.ico')} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
-    <link rel="alternate" type="application/rss+xml" title={siteName} href={withBase('/rss.xml')} />
+    {/* RSS feed parked with the blog in archive/blog/:
+    <link rel="alternate" type="application/rss+xml" title={siteName} href={withBase('/rss.xml')} /> */}
     <title>{fullTitle}</title>
 
     {/* Astro comment syntax — an HTML comment here would ship on every page. */}
