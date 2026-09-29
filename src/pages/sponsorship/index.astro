@@ -19,31 +19,31 @@ import { withBase } from '../../lib/url';
     <div class="sponsor-row" aria-label={t('home.sponsorsLabel')}>
       <p class="eyebrow">{t('home.sponsorsEyebrow')}</p>
       <ul>
-        {
-          SPONSORS.map((sponsor) => (
-            <li>
-              <img
-                src={withBase(sponsor.logo)}
-                alt={sponsor.name}
-                width={sponsor.width}
-                height={sponsor.height}
-                style={sponsor.displayHeight && `--logo-height: ${sponsor.displayHeight}`}
-                loading="lazy"
-              />
-            </li>
-          ))
-        }
+        {SPONSORS.map((sponsor) => (
+          <li>
+            <img
+              src={withBase(sponsor.logo)}
+              alt={sponsor.name}
+              width={sponsor.width}
+              height={sponsor.height}
+              style={sponsor.displayHeight && `--logo-height: ${sponsor.displayHeight}`}
+              loading="lazy"
+            />
+          </li>
+        ))}
       </ul>
     </div>
   </section>
   <section class="section">
     <p class="lead">
       If you are an organisation interested in supporting students in probability and statistics,
-      please considering providing your support to allow us to host this conference and those into
-      the future.
+      please consider providing your support to allow us to host this conference and those into the
+      future.
     </p>
     <div class="action-row" aria-label={t('home.primaryLinks')}>
-      <a class="button" href="mailto:rsc2027imperial@gmail.com"> Get in contact </a>
+      <a class="button" href="mailto:rsc2027imperial@gmail.com">
+        Get in contact
+      </a>
     </div>
   </section>
 </BaseLayout>

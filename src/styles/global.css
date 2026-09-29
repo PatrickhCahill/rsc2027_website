@@ -165,8 +165,13 @@ a:not(.brand, .button):hover {
   width: auto;
   height: 6rem;
   /* Shrinks over the first 200px of scroll; browsers without scroll-driven
-     animations (Firefox) keep the full-size logo. */
-  animation: shrink-logo linear both;
+     animations (Firefox) keep the full-size logo. Longhands only: given the
+     `animation` shorthand, the build's CSS minifier folds `scroll()` into
+     it, which browsers reject, so the effect works in dev but not in
+     production. */
+  animation-name: shrink-logo;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
   animation-timeline: scroll();
   animation-range: 0 200px;
 }
